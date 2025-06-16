@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html {
+    scroll-behavior: smooth;
+}
+body {
+    @apply bg-gray-900 text-gray-100 font-sans;
+}
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.text-gradient-animated {
+    background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80, #facc15);
+    background-size: 800% 800%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientAnimation 8s ease infinite;
+}
+
+.slick-dots li {
+  margin: 0 0px !important; /* Reduce spacing between dots */
+}
+
+.slick-dots li button:before {
+  font-size: 8px !important; /* smaller dot size */
+  color: #a5b4fc !important; /* Tailwind's indigo-300 */
+  opacity: 1 !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #6366f1 !important; /* Tailwind's indigo-500 */
+}
+
