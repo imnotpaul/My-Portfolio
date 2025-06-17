@@ -53,7 +53,7 @@ const projects = [
     {
         title: "Wordpress Project",
         image: "/Project3.jpg",
-        description: "Developed a responsive WordPress school website...",
+        description: "Built a responsive school website on WordPress with custom HTML and CSS for enhanced design and usability.",
         tags: ["WORDPRESS", "HTML", "CSS"],
         demo: "https://kccf.wuaze.com/",
     },
@@ -66,10 +66,10 @@ const projects = [
     },
     {
         title: "Portfolio Website",
-        image: "/Project5.jpg",
-        description: "Built a personal portfolio using React and Tailwind...",
-        tags: ["React", "Tailwind", "Framer Motion"],
-        demo: "https://example.com",
+        image: "/Proj Portfolio.jpg",
+        description: "Built a responsive personal portfolio using React, Vite, and Tailwind CSS with Framer Motion animations, deployed on Firebase Hosting.",
+        tags: ["React", "Tailwind", "Framer Motion",],
+        demo: "https://my-portfolio-fa9db.web.app/",
     },
     {
         title: "IoT Smart Light",

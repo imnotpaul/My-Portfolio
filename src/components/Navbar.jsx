@@ -102,7 +102,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-3">
           {/* Optional logo image */}
           {/* <img src="/jp logo.png" alt="Logo" className="w-10 h-10 rounded-full" /> */}
-          <span className="font-bold text-2xl">John Paul Litrero</span>
+          <span className="font-bold text-2xl">John Paul J. Litrero</span>
         </div>
 
         {/* Desktop navigation links - hidden on small screens */}
