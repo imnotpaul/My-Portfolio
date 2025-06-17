@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 // Define an array of experience objects to be displayed
 const experiences = [
     {
-        title: "Back End & Front End Developer", // Job title
-        company: "Laravel Project",     // Company or project name
+        title: "Web Development Support", // Job title
+        company: "Laravel & PHP Project",     // Company or project name
         date: "March 2024 - April 2024",          // Duration of the experience
-description: "Developed a school management system using Laravel with front-end and back-end integration. Implemented student records, user authentication, dynamic routing, and responsive Blade templates for an efficient and user-friendly experience.", // Job description
+description: "Developed a school management system using Laravel & PHP framework with front-end and back-end integration. Implemented student records, user authentication, dynamic routing, and responsive Blade templates for an efficient and user-friendly experience.", // Job description
         images: ["/LaravelProj1.jpg", "/LaravelProj2.jpg", "/LaravelProj3.jpg", "/LaravelProj4.jpg"], // Images related to the project
     },
     {
-        title: "Networking",
+        title: "CCTV Installation & Networking",
         company: "IT Solution-WMM",
         date: "Aug 2024 - Nov 2024",
         description: "Assisted in CCTV installation, wirings like cable tracing, troubleshooting and termination at DIY Dad, Lake Hotel, and Char’s Garden Café. Gained hands-on experience in security systems, networking, and client communication.",
