@@ -9,7 +9,7 @@ const experiences = [
         company: "Laravel & PHP Project",     // Company or project name
         date: "March 2024 - April 2024",          // Duration of the experience
 description: "Developed a school management system using Laravel & PHP framework with front-end and back-end integration. Implemented student records, user authentication, dynamic routing, and responsive Blade templates for an efficient and user-friendly experience.", // Job description
-        images: ["/LaravelProj1.jpg", "/LaravelProj2.jpg", "/LaravelProj3.jpg", "/LaravelProj4.jpg"], // Images related to the project
+        images: ["/LaravelProj1.jpg", "/LaravelProj2.jpg", "/LaravelProj3.jpg"], // Images related to the project
     },
     {
         title: "CCTV Installation & Networking",

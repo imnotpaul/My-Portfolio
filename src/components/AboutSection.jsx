@@ -36,11 +36,11 @@ export default function AboutSection() {
                 transition={{ duration: 0.8 }} // Animation duration
             >
                 <img
-                    src="/Profile3.jpg" // Path to profile picture
+                    src="/Profile 2.jpg" // Path to profile picture
                     alt="Profile" // Accessibility: alternative text
                     className="rounded-lg object-cover w-full max-w-md h-auto shadow-lg"
                     // Style: rounded corners, cover image, responsive size, shadow
-                    style={{ maxHeight: '400px' }} // Limit height
+                    style={{ maxHeight: '400px', transform: 'translateY(50px)'}} // Limit height
                 />
             </motion.div>
 

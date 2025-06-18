@@ -60,7 +60,7 @@ export default function ContactSection() {
 
                 {/* Loop through contact details and render them with animation */}
                 {[
-                    { icon: faEnvelope, label: "johnpaullitrero5@gmail.com" },
+                    { icon: faEnvelope, label: "johnpaullitrero5@gmail.com"},
                     { icon: faPhone, label: "+63 999 151 9865" },
                     { icon: faLocationDot, label: "Alfonso, Cavite, Philippines" },
                 ].map(({ icon, label }, idx) => (
@@ -72,7 +72,7 @@ export default function ContactSection() {
                         viewport={{ once: false }}
                         transition={{ duration: 0.5, delay: idx * 0.2 }} // Staggered animation
                     >
-                        <FontAwesomeIcon icon={icon} /> {/* Display icon */}
+                        <FontAwesomeIcon icon={icon} className=" text-indigo-500" />
                         <span>{label}</span> {/* Display contact text */}
                     </motion.div>
                 ))}

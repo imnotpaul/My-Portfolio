@@ -139,7 +139,7 @@ export default function Navbar() {
           {/* Dark mode toggle button (desktop) */}
           <button
             onClick={toggleDarkMode}
-            className="ml-4 p-2 rounded hover:bg-gray-200 dark:hover:bg-indigo-600/30 transition"
+            className="ml-4 p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-600/30 transition" 
             aria-label="Toggle Theme"
           >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -194,7 +194,7 @@ export default function Navbar() {
           <li className="text-center">
             <button
               onClick={toggleDarkMode}
-              className="mx-auto p-2 rounded hover:bg-gray-200 dark:hover:bg-indigo-600/30 transition"
+              className="mx-auto p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-600/30 transition"
               aria-label="Toggle Theme"
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}

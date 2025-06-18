@@ -73,7 +73,7 @@ export default function LandingSection() {
         {/* Subtitle description */}
         <motion.p
           variants={itemVariants}
-          className="text-lg text-gray-600 dark:text-gray-400"
+          className="text-lg text-black dark:text-white"
         >
           IT Support Specialist & Web Developer
         </motion.p>

@@ -36,7 +36,7 @@ export default function SkillsSection() {
     <section id="skills" className="max-w-6xl mx-auto px-4 py-16 mt-12">
 
       {/* Section Title */}
-      <h2 className="text-3xl font-semibold mb-10 text-indigo-400 text-center">
+      <h2 className="text-3xl font-bold mb-10 text-indigo-400 text-center">
         Technical Skills
       </h2>
 

@@ -35,20 +35,20 @@ function PrevArrow({ onClick }) {
 // ========================
 // Project Data
 // ========================
-const projects = [
+const projects = [ 
     {
-        title: "Capstone Project",
-        image: "/Project1.jpg",
-        description: "Focuses on the development of an offline Android application...",
-        tags: ["Flutter", "Dart", "Android Application"],
-        demo: "https://docs.google.com/...",
+        title: "School Management System",
+        image: "/LaravelProj1.jpg",
+        description: "Developed a web-based system using Laravel, PHP, and MySQL with full CRUD functionality.",
+        tags: ["PHP", "LARAVEL", "MySQL"],
+        demo: "https://github.com/imnotpaul/litrero.git",
     },
     {
-        title: "Arduino Project",
-        image: "/Project2.jpg",
-        description: "A smart electric fan built with Arduino Uno...",
-        tags: ["Arduino", "Unique"],
-        demo: "https://www.canva.com/...",
+        title: "Portfolio Website",
+        image: "/Proj Portfolio.jpg",
+        description: "Built a responsive personal portfolio using React, Vite, and Tailwind CSS with Framer Motion animations, deployed on Firebase Hosting.",
+        tags: ["REACT", "TAILWIND", "FRAMER MOTION",],
+        demo: "https://my-portfolio-fa9db.web.app/",
     },
     {
         title: "Wordpress Project",
@@ -58,18 +58,18 @@ const projects = [
         demo: "https://kccf.wuaze.com/",
     },
     {
-        title: "E-commerce App",
-        image: "/Project4.jpg",
-        description: "A mobile-friendly Flutter e-commerce application...",
-        tags: ["Flutter", "Firebase", "Stripe"],
-        demo: "https://example.com",
+        title: "CRUD Project",
+        image: "/Project1.jpg",
+        description: "CRUD-based product and user management system that allows users to fill in information, add and buy products, view receipts or print transaction records",
+        tags: ["PHP", "MYSQL", "HTML", "CSS"],
+        demo: "https://docs.google.com/...",
     },
     {
-        title: "Portfolio Website",
-        image: "/Proj Portfolio.jpg",
-        description: "Built a responsive personal portfolio using React, Vite, and Tailwind CSS with Framer Motion animations, deployed on Firebase Hosting.",
-        tags: ["React", "Tailwind", "Framer Motion",],
-        demo: "https://my-portfolio-fa9db.web.app/",
+        title: "Arduino Project",
+        image: "/Project2.jpg",
+        description: "A smart electric fan built with Arduino Uno",
+        tags: ["Arduino", "Unique"],
+        demo: "https://www.canva.com/...",
     },
     {
         title: "IoT Smart Light",
