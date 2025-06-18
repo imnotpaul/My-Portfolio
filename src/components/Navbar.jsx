@@ -95,7 +95,7 @@ export default function Navbar() {
 
   return (
     // Main navigation bar container, fixed to the top of the page
-    <nav className="fixed top-0 left-0 w-full bg-gray-100 text-black dark:bg-[#072126] dark:text-white shadow z-50 transition-colors duration-300">
+    <nav className="fixed top-0 left-0 w-full bg-gray-100 text-black dark:bg-gray-800 dark:text-white shadow z-50 transition-colors duration-300">
       {/* Wrapper div for logo and nav items */}
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo and name area */}
@@ -117,8 +117,8 @@ export default function Navbar() {
                     href={href}
                     className={`transition-all duration-300 pb-1 border-b-2 ${
                       isActive
-                        ? "text-[#0F969C] border-[#0F969C] font-semibold"
-                        : "border-transparent hover:text-[#0F969C] hover:border-[#0F969C]"
+                        ? "text-indigo-400 border-indigo-400 font-semibold"
+                      : "border-transparent hover:text-indigo-600 hover:border-indigo-600"
                     }`}
                   >
                     {name}
@@ -131,7 +131,7 @@ export default function Navbar() {
           {/* "Contact" button (desktop only) */}
           <a
             href="#contact"
-            className="ml-4 transition transform hover:scale-110 bg-[#0F969C] hover:bg-[#0c7d82] text-white px-4 py-2 rounded"
+            className="ml-4 transition transform hover:scale-110 bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded"
           >
             Contact
           </a>
@@ -139,7 +139,7 @@ export default function Navbar() {
           {/* Dark mode toggle button (desktop) */}
           <button
             onClick={toggleDarkMode}
-            className="ml-4 p-2 rounded hover:bg-gray-200 dark:hover:bg-[#0c7d82]/30 transition"
+            className="ml-4 p-2 rounded hover:bg-gray-200 dark:hover:bg-indigo-600/30 transition"
             aria-label="Toggle Theme"
           >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -168,8 +168,8 @@ export default function Navbar() {
                   href={href}
                   className={`block transition-all duration-200 pb-1 border-b-2 ${
                     isActive
-                      ? "text-[#0F969C] border-[#0F969C] font-bold"
-                      : "hover:text-[#0F969C] hover:border-[#0F969C] border-transparent"
+                      ? "text-indigo-500 border-indigo-500 font-bold"
+                      : "hover:text-indigo-600 hover:border-indigo-600 border-transparent"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
@@ -183,7 +183,7 @@ export default function Navbar() {
           <li>
             <a
               href="#contact"
-              className="block text-center transition transform hover:scale-110 bg-[#0F969C] hover:bg-[#0c7d82] text-white px-4 py-2 rounded"
+              className="block text-center transition transform hover:scale-110 bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded"
               onClick={() => setIsOpen(false)}
             >
               Contact
@@ -194,7 +194,7 @@ export default function Navbar() {
           <li className="text-center">
             <button
               onClick={toggleDarkMode}
-              className="mx-auto p-2 rounded hover:bg-gray-200 dark:hover:bg-[#0c7d82]/30 transition"
+              className="mx-auto p-2 rounded hover:bg-gray-200 dark:hover:bg-indigo-600/30 transition"
               aria-label="Toggle Theme"
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}

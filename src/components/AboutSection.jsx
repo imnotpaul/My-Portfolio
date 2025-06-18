@@ -54,7 +54,7 @@ export default function AboutSection() {
                 transition={{ duration: 0.8 }}
             >
                 {/* Heading */}
-                <h2 className="text-4xl font-bold mb-6 text-indigo-600 dark:text-indigo-400">
+                <h2 className="text-4xl font-bold mb-6 text-indigo-400 dark:text-indigo-400">
                     About Me
                 </h2>
 

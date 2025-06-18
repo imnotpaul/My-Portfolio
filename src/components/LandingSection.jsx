@@ -31,44 +31,42 @@ export default function LandingSection() {
   return (
     // Section representing the landing/home area of the page
     <section
-      id="home"  // Anchor for navigation
-      className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 bg-white dark:bg-[#05161A] transition-colors duration-300"
-      // Full viewport height, center-aligned content, responsive padding, background changes in dark mode
+      id="home"
+      className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 bg-white dark:bg-gray-900 transition-colors duration-300"
     >
       {/* Profile image with entrance animation */}
       <motion.div
-        className="rounded-full border-4 border-[#0F969C] shadow-lg overflow-hidden w-40 h-40 mb-6"
-        // Circular profile container with border and shadow
-        initial={{ scale: 0 }}  // Start scaled down
-        animate={{ scale: 1 }}  // Animate to full scale
-        transition={{ duration: 0.8 }}  // Duration of the scale animation
+        className="rounded-full border-4 border-indigo-400 shadow-lg overflow-hidden w-40 h-40 mb-8"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.8 }}
       >
         <img
-          src="/Profile1.jpeg"  // Path to profile image
-          alt="Profile"         // Alt text for accessibility
-          className="w-full h-full object-cover"  // Image styling to fully fill the circle
+          src="/Profile1.jpeg"
+          alt="Profile"
+          className="w-full h-full object-cover"
         />
       </motion.div>
 
       {/* Animated container for the rest of the text and buttons */}
       <motion.div
-        variants={containerVariants}  // Use the defined container animation
+        variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="space-y-4"  // Vertical spacing between elements
+        className="space-y-6 w-full max-w-xl"
       >
         {/* Name with type animation */}
         <motion.h1
-          variants={itemVariants}  // Apply item animation
+          variants={itemVariants}
           className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white"
         >
           Hello,{" "}
           <TypeAnimation
-            sequence={["I'm John Paul.", 1500, "", 500]}  // Typing and deleting animation
+            sequence={["I'm John Paul.", 1500, "", 500]}
             wrapper="span"
             speed={50}
-            repeat={Infinity}  // Loops forever
-            className="text-[#0F969C]"  // Text color
+            repeat={Infinity}
+            className="text-indigo-400"
           />
         </motion.h1>
 
@@ -83,7 +81,7 @@ export default function LandingSection() {
         {/* Social Media Icons */}
         <motion.div
           variants={itemVariants}
-          className="flex gap-6 justify-center"
+          className="flex gap-8 justify-center mt-4"
         >
           {/* GitHub Link */}
           <a
@@ -93,7 +91,7 @@ export default function LandingSection() {
           >
             <FontAwesomeIcon
               icon={faGithub}
-              className="text-xl text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-[#0F969C] transition"
+              className="text-2xl text-gray-900 dark:text-white hover:text-indigo-400 dark:hover:text-indigo-400 transition"
             />
           </a>
 
@@ -105,7 +103,7 @@ export default function LandingSection() {
           >
             <FontAwesomeIcon
               icon={faFacebookF}
-              className="text-xl text-gray-900 dark:text-white hover:text-[#0F969C] dark:hover:text-[#0F969C] transition"
+              className="text-2xl text-gray-900 dark:text-white hover:text-indigo-400 dark:hover:text-indigo-400 transition"
             />
           </a>
 
@@ -117,7 +115,7 @@ export default function LandingSection() {
           >
             <FontAwesomeIcon
               icon={faInstagram}
-              className="text-xl text-gray-900 dark:text-white hover:text-[#0F969C] dark:hover:text-[#0F969C] transition"
+              className="text-2xl text-gray-900 dark:text-white hover:text-indigo-400 dark:hover:text-indigo-400 transition"
             />
           </a>
         </motion.div>
@@ -125,23 +123,23 @@ export default function LandingSection() {
         {/* Buttons: Download CV & Hire Me */}
         <motion.div
           variants={itemVariants}
-          className="flex gap-6 justify-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center mt-6"
         >
           {/* Download CV Button */}
           <motion.a
-            href="/cv.pdf"  // Link to your CV file
-            download  // Trigger download when clicked
-            whileHover={{ scale: 1.05 }}  // Slight scale up on hover
-            className="px-8 py-3 rounded-full bg-[#0F969C] text-white hover:opacity-90 transition-transform font-semibold"
+            href="/cv.pdf"
+            download
+            whileHover={{ scale: 1.05 }}
+            className="px-8 py-3 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 transition-transform font-semibold"
           >
             Download CV
           </motion.a>
 
           {/* Hire Me Button scrolls to contact section */}
           <motion.a
-            href="#projects"  // Scrolls to contact section
+            href="#projects"
             whileHover={{ scale: 1.05 }}
-            className="px-8 py-3 rounded-full border-2 border-[#0F969C] text-[#0F969C] hover:bg-[#0F969C] hover:text-white transition-transform font-semibold"
+            className="px-8 py-3 rounded-full border-2 border-indigo-400 text-indigo-400 hover:bg-indigo-600 hover:text-white transition-transform font-semibold"
           >
             My Projects
           </motion.a>

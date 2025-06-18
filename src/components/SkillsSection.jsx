@@ -13,8 +13,8 @@ const webDevSkills = [
   { name: "MySQL", level: 70, color: "from-emerald-500 to-emerald-700" },
   { name: "Php", level: 70, color: "from-gray-400 to-gray-600" },
   { name: "JavaScript", level: 65, color: "from-yellow-300 to-yellow-500" },
-  { name: "C++", level: 60, color: "from-red-400 to-red-600" },
-  { name: "Java", level: 50, color: "from-purple-400 to-purple-600" },
+  { name: "Java", level: 60, color: "from-purple-400 to-purple-600" },
+  { name: "C++", level: 55, color: "from-red-400 to-red-600" },
 ];
 
 // =====================
