@@ -158,7 +158,7 @@ export default function Navbar() {
 
       {/* Mobile navigation dropdown menu */}
       {isOpen && (
-        <ul className="md:hidden px-6 pb-6 flex flex-col space-y-4 bg-white text-black dark:bg-[#072126] dark:text-white">
+        <ul className="md:hidden px-6 pb-6 flex flex-col space-y-4 bg-white text-black dark:bg-gray-800 dark:text-white">
           {/* Navigation links for mobile */}
           {navLinks.map(({ name, href }) => {
             const isActive = activeSection === href.slice(1);
