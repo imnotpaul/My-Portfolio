@@ -59,10 +59,10 @@ const projects = [
     },
     {
         title: "CRUD Project",
-        image: "/Project1.jpg",
+        image: "/Homepage.jpg",
         description: "CRUD-based product and user management system that allows users to fill in information, add and buy products, view receipts or print transaction records",
         tags: ["PHP", "MYSQL", "HTML", "CSS"],
-        demo: "https://docs.google.com/...",
+        demo: "https://docs.google.com/presentation/d/1Vb1F5Iz5W8fPJcJv88b_KQ_1XO-rxiqH/edit?usp=drive_link&ouid=113410629218098710291&rtpof=true&sd=true",
     },
     {
         title: "Arduino Project",
@@ -74,7 +74,7 @@ const projects = [
     {
         title: "IoT Smart Light",
         image: "/Project6.jpg",
-        description: "An IoT-powered smart light controller using ESP32...",
+        description: "An IoT-powered smart light controller using ESP32",
         tags: ["IoT", "ESP32", "MQTT"],
         demo: "https://example.com",
     },
