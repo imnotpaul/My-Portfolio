@@ -1,41 +1,48 @@
-// Import required modules and styles
-import { motion } from "framer-motion"; // Animation library
-import Slider from "react-slick"; // React wrapper for Slick Carousel
-import "slick-carousel/slick/slick.css"; // Slick Carousel base styles
-import "slick-carousel/slick/slick-theme.css"; // Slick Carousel theme styles
+// Import Framer Motion for animations
+import { motion } from "framer-motion";
 
-// ========================
+// Import Slick Carousel for sliding projects
+import Slider from "react-slick";
+
+// Import required CSS for the carousel
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+
+// ===========================
 // Custom Arrow Components
-// ========================
+// ===========================
 
-// Next arrow button component for slider
+// Custom next arrow for the slider
 function NextArrow({ onClick }) {
     return (
         <div
-            className="absolute -right-8 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-indigo-500 hover:text-indigo-400 text-3xl"
-            onClick={onClick}
+            onClick={onClick} // Trigger slide next on click
+            className="absolute -right-4 md:-right-8 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-indigo-500 hover:text-indigo-400 text-3xl"
         >
-            ❯ {/* Right arrow symbol */}
+            ❯
         </div>
     );
 }
 
-// Previous arrow button component for slider
+// Custom previous arrow for the slider
 function PrevArrow({ onClick }) {
     return (
         <div
-            className="absolute -left-8 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-indigo-500 hover:text-indigo-400 text-3xl"
-            onClick={onClick}
+            onClick={onClick} // Trigger slide previous on click
+            className="absolute -left-4 md:-left-8 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-indigo-500 hover:text-indigo-400 text-3xl"
         >
-            ❮ {/* Left arrow symbol */}
+            ❮
         </div>
     );
 }
 
-// ========================
-// Project Data
-// ========================
-const projects = [ 
+
+// ===========================
+// Project Data Array
+// ===========================
+
+const projects = [
     {
         title: "School Management System",
         image: "/LaravelProj1.jpg",
@@ -46,63 +53,65 @@ const projects = [
     {
         title: "Portfolio Website",
         image: "/Proj Portfolio.jpg",
-        description: "Built a responsive personal portfolio using React, Vite, and Tailwind CSS with Framer Motion animations, deployed on Firebase Hosting.",
-        tags: ["REACT", "TAILWIND", "FRAMER MOTION",],
+        description: "Built a responsive portfolio using React, Tailwind CSS, and Framer Motion.",
+        tags: ["REACT", "TAILWIND", "FRAMER MOTION"],
         demo: "https://my-portfolio-fa9db.web.app/",
     },
     {
         title: "Wordpress Project",
         image: "/Project3.jpg",
-        description: "Built a responsive school website on WordPress with custom HTML and CSS for enhanced design and usability.",
+        description: "Custom school website using WordPress, HTML, and CSS.",
         tags: ["WORDPRESS", "HTML", "CSS"],
         demo: "https://kccf.wuaze.com/",
     },
     {
         title: "CRUD Project",
         image: "/Homepage.jpg",
-        description: "CRUD-based product and user management system that allows users to fill in information, add and buy products, view receipts or print transaction records",
+        description: "CRUD-based system to manage products, users, and print receipts.",
         tags: ["PHP", "MYSQL", "HTML", "CSS"],
         demo: "https://drive.google.com/file/d/1Mb4wDbxJ7NGrBNvo0N9KUkg_EGEOrZyr/view?usp=sharing",
     },
     {
         title: "Arduino Project",
         image: "/Project2.jpg",
-        description: "A smart electric fan built with Arduino Uno",
+        description: "A smart electric fan using Arduino Uno.",
         tags: ["Arduino", "Unique"],
         demo: "https://www.canva.com/...",
     },
     {
         title: "IoT Smart Light",
         image: "/Project6.jpg",
-        description: "An IoT-powered smart light controller using ESP32",
+        description: "IoT-powered smart light controller using ESP32 and MQTT.",
         tags: ["IoT", "ESP32", "MQTT"],
         demo: "https://example.com",
     },
 ];
 
-// ========================
-// Slick Carousel Settings
-// ========================
+
+// ===========================
+// Slider Configuration
+// ===========================
+
 const settings = {
     dots: true, // Show navigation dots
-    infinite: true, // Loop slides infinitely
-    speed: 500, // Transition speed in ms
-    slidesToShow: 3, // Number of slides to show at once
-    slidesToScroll: 3, // Number of slides to scroll at once
+    infinite: true, // Enable infinite looping
+    speed: 600, // Animation speed in ms
+    slidesToShow: 3, // Number of slides visible at once (desktop)
+    slidesToScroll: 3, // Slides to scroll per navigation
     autoplay: true, // Enable automatic scrolling
-    autoplaySpeed: 3000, // Delay between slides in ms
-    nextArrow: <NextArrow />, // Use custom next arrow
-    prevArrow: <PrevArrow />, // Use custom prev arrow
+    autoplaySpeed: 3500, // Delay between auto scrolls in ms
+    nextArrow: <NextArrow />, // Custom next arrow
+    prevArrow: <PrevArrow />, // Custom previous arrow
     responsive: [
         {
-            breakpoint: 1024, // For screens less than 1024px
+            breakpoint: 1024, // For tablets and below
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
             },
         },
         {
-            breakpoint: 640, // For mobile screens
+            breakpoint: 640, // For mobile devices
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -111,53 +120,103 @@ const settings = {
     ],
 };
 
-// ========================
+
+// ===========================
+// Framer Motion Animation Variants
+// ===========================
+
+// Section animation on enter
+const containerVariants = {
+    hidden: { opacity: 0, y: 30 }, // Initial state
+    show: {
+        opacity: 1,
+        y: 0, // Animate to original position
+        transition: {
+            duration: 0.6,
+            ease: "easeOut", // Smooth animation
+        },
+    },
+};
+
+// Animation for each card (with delay)
+const cardVariants = {
+    hidden: { opacity: 0, y: 40 }, // Start hidden and slightly lower
+    show: (i) => ({
+        opacity: 1,
+        y: 0, // Slide into view
+        transition: {
+            delay: i * 0.2, // Staggered delay for each card
+            duration: 0.6,
+        },
+    }),
+};
+
+
+// ===========================
 // ProjectSection Component
-// ========================
+// ===========================
+
 export default function ProjectSection() {
     return (
-        <section id="projects" className="max-w-6xl mx-auto py-16 px-6">
-            {/* Animated Heading using Framer Motion */}
+        <motion.section
+            id="projects"
+            className="max-w-6xl mx-auto py-20 px-6"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }} // Only animate once per scroll into view
+            variants={containerVariants}
+        >
+            {/* Section Heading with entrance animation */}
             <motion.h2
-                className="text-3xl font-bold text-indigo-400 mb-10 text-center"
-                initial={{ y: 50, opacity: 0 }} // Initial animation state
-                whileInView={{ y: 0, opacity: 1 }} // Animate into view
-                viewport={{ once: false }} // Animate every time it enters view
+                className="text-3xl font-bold text-indigo-400 mb-16 text-center"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
             >
                 Projects
             </motion.h2>
 
-            {/* Slider component rendering all projects */}
+            {/* Project Carousel using react-slick */}
             <Slider {...settings}>
-                {projects.map(({ title, image, description, tags, demo }) => (
+                {projects.map(({ title, image, description, tags, demo }, index) => (
                     <motion.div
                         key={title}
                         className="px-3"
-                        initial={{ opacity: 0, y: 20 }} // Animate in from below
-                        whileInView={{ opacity: 1, y: 0 }} // Animate to visible
-                        viewport={{ once: false }} // Animate each time in view
+                        custom={index} // Used by Framer Motion for stagger
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: false }} // Animate each time it comes into view
+                        variants={cardVariants}
                     >
-                        <div className="relative group rounded-lg overflow-hidden shadow-lg bg-gray-100 dark:bg-gray-800">
-                            {/* Project image */}
+                        {/* Card Container */}
+                        <div className="relative group rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 transition-transform duration-300 hover:-translate-y-1">
+                            
+                            {/* Project Image */}
                             <img
                                 src={image}
-                                alt={title}
-                                className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+                                alt={title || "Project Screenshot"}
+                                className="w-full h-64 object-cover group-hover:scale-105 transition duration-500"
                             />
 
-                            {/* Overlay appears on hover with info */}
-                            <div className="absolute inset-0 bg-white/90 dark:bg-gray-900/90 text-gray-900 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-6">
+                            {/* Hover Overlay Info */}
+                            <div className="absolute inset-0 bg-white/90 dark:bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-6">
+                                
+                                {/* Title + Description */}
                                 <div>
-                                    {/* Title and description */}
-                                    <h3 className="text-2xl font-semibold mb-2">{title}</h3>
-                                    <p className="text-sm mb-4">{description}</p>
+                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                                        {title}
+                                    </h3>
+                                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+                                        {description}
+                                    </p>
 
-                                    {/* Technology tags */}
-                                    <div className="flex flex-wrap gap-2 mb-4">
+                                    {/* Tags */}
+                                    <div className="flex flex-wrap gap-2">
                                         {tags.map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="bg-indigo-600 text-white rounded-full px-3 py-1 text-xs font-semibold uppercase"
+                                                className="bg-indigo-600 text-white px-3 py-1 rounded-full text-xs font-semibold"
                                             >
                                                 {tag}
                                             </span>
@@ -165,12 +224,12 @@ export default function ProjectSection() {
                                     </div>
                                 </div>
 
-                                {/* Project demo link */}
+                                {/* Project Demo Link */}
                                 <a
                                     href={demo}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="bg-indigo-500 hover:bg-indigo-400 text-white px-4 py-2 rounded font-semibold text-sm text-center transition"
+                                    className="mt-4 text-center bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-2 px-4 rounded transition"
                                 >
                                     View Project
                                 </a>
@@ -179,6 +238,6 @@ export default function ProjectSection() {
                     </motion.div>
                 ))}
             </Slider>
-        </section>
+        </motion.section>
     );
 }
