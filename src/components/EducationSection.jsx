@@ -10,7 +10,7 @@ const educations = [
     degree: "Bachelor of Science in Information Technology",
     school: "Kurios Christian Colleges Foundation, Inc.",
     date: "2021 - 2025",
-    certificate: "/certificates/bsit.png", // Path to certificate image
+    certificate: "/Certificate 2.jpg", // Path to certificate image
   },
   {
     degree: "Academic Track Humanities and Social Science",

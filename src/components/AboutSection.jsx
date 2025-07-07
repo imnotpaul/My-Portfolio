@@ -36,11 +36,11 @@ export default function AboutSection() {
                 transition={{ duration: 0.8 }} // Animation duration
             >
                 <img
-                    src="/Profile 2.jpg" // Path to profile picture
+                    src="/Profile 5.png" // Path to profile picture
                     alt="Profile" // Accessibility: alternative text
                     className="rounded-lg object-cover w-full max-w-md h-auto shadow-lg"
                     // Style: rounded corners, cover image, responsive size, shadow
-                    style={{ maxHeight: '400px', transform: 'translateY(50px)'}} // Limit height
+                    style={{ maxHeight: '400px', transform: 'translateY(30px)'}} // Limit height
                 />
             </motion.div>
 
@@ -60,17 +60,17 @@ export default function AboutSection() {
 
                 {/* Intro paragraph */}
                 <p className="mb-6 leading-relaxed text-lg text-gray-800 dark:text-gray-300">
-                    I’m an IT Specialist and web developer with hands-on experience in networking, CCTV installation, line tracing, termination, and troubleshooting complex wiring systems. I also work with Laravel and WordPress to build functional web systems. This foundation enables me to manage both physical infrastructure and digital systems with confidence and precision.
+                    I'm an IT Support Specialist and web developer with hands-on experience in networking, CCTV setup, and troubleshooting complex wiring systems. I develop functional, responsive websites using Laravel and WordPress blending technical support expertise with web development to deliver reliable, end-to-end solutions with confidence and precision.
                 </p>
 
                 {/* Conditionally rendered "more about me" section */}
                 {isExpanded && (
                     <div className="mb-6 leading-relaxed text-lg text-gray-700 dark:text-indigo-100">
                         <p>
-                            Alongside my technical support background, I’m also a web developer skilled in frontend and backend development. I build responsive, user-friendly websites using WordPress, HTML & CSS, and Laravel delivering functional solutions from concept to deployment.
+                            In addition to my technical support experience, I build responsive and user-friendly websites using WordPress and Laravel delivering practical and visually polished solutions.
                         </p>
                         <p className="mt-4">
-                           In my free time, I focus on improving my full-stack development skills studying HTML, JavaScript, React, Tailwind CSS, and backend technologies like Laravel, PHP, Node.js, and MySQL. I’m committed to continuous learning and growth in the field of information technology.
+                          In my free time, I enjoy exploring new areas of web development, frontend and backend tools. I'm passionate about development and committed to continuously growing my skills and knowledge in the IT field.
                         </p>
                     </div>
                 )}

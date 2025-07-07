@@ -42,9 +42,9 @@ export default function LandingSection() {
         transition={{ duration: 0.8 }}
       >
         <img
-          src="/Profile1.jpeg"
+          src="/Profile 5.png"
           alt="Profile"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-flex"
         />
       </motion.div>
 
