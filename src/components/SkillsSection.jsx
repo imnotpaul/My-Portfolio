@@ -141,14 +141,14 @@ export default function SkillsSection() {
             {webDevSkills.map(({ name, level, color, icon }) => (
               <div
                 key={name} // Key for React rendering
-                className="bg-gray-800/60 dark:bg-white/5 backdrop-blur-md p-4 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+                className="bg-gray-400 dark:bg-white/5 backdrop-blur-md p-4 rounded-xl shadow-md hover:shadow-lg transition duration-300"
               >
                 {/* Skill name with icon and percentage */}
                 <div className="flex justify-between mb-1 items-center">
                   <span className="text-sm text-white flex items-center gap-2">
                     {icon} {name}
                   </span>
-                  <span className="text-xs text-indigo-300">{level}%</span>
+                  <span className="text-xs text-white">{level}%</span>
                 </div>
 
                 {/* Progress bar background */}
@@ -180,14 +180,14 @@ export default function SkillsSection() {
             {itSkills.map(({ name, level, color, icon }) => (
               <div
                 key={name}
-                className="bg-gray-800/60 dark:bg-white/5 backdrop-blur-md p-4 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+                className="bg-gray-400 dark:bg-white/5 backdrop-blur-md p-4 rounded-xl shadow-md hover:shadow-lg transition duration-300"
               >
                 {/* Skill name and percentage */}
                 <div className="flex justify-between mb-1 items-center">
                   <span className="text-sm text-white flex items-center gap-2">
                     {icon} {name}
                   </span>
-                  <span className="text-xs text-indigo-300">{level}%</span>
+                  <span className="text-xs text-white">{level}%</span>
                 </div>
 
                 {/* Background of the progress bar */}

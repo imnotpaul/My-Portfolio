@@ -46,7 +46,7 @@ export default function ContactSection() {
             
             {/* Section title with animation */}
             <motion.h2
-                className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-10 text-center"
+                className="text-3xl font-bold text-indigo-400 dark:text-indigo-400 mb-10 text-center"
                 initial={{ y: 50, opacity: 0 }} // Start hidden and pushed down
                 whileInView={{ y: 0, opacity: 1 }} // Animate to visible and original position
                 viewport={{ once: false }} // Allow animation on every view
@@ -72,7 +72,7 @@ export default function ContactSection() {
                         viewport={{ once: false }}
                         transition={{ duration: 0.5, delay: idx * 0.2 }} // Staggered animation
                     >
-                        <FontAwesomeIcon icon={icon} className=" text-indigo-500" />
+                        <FontAwesomeIcon icon={icon} className=" text-indigo-400" />
                         <span>{label}</span> {/* Display contact text */}
                     </motion.div>
                 ))}
