@@ -1,24 +1,24 @@
-// Importing React hooks to manage component state and side effects
+// Import React hooks to manage state and lifecycle
 import { useState, useEffect } from "react";
 
-// Importing icons from lucide-react for menu toggle and theme switch
+// Import icons from lucide-react for UI interactions
 import { Menu, X, Sun, Moon } from "lucide-react";
 
-// Defining and exporting the Navbar component
+// Export the Navbar component
 export default function Navbar() {
-  // State to track whether the mobile menu is open
+  // Track mobile menu toggle state
   const [isOpen, setIsOpen] = useState(false);
 
-  // State to track which section is currently visible (for nav highlighting)
+  // Track which section is currently active for nav highlighting
   const [activeSection, setActiveSection] = useState("home");
 
-  // State to toggle dark mode
+  // Track whether dark mode is enabled
   const [darkMode, setDarkMode] = useState(false);
 
-  // State to control showing the loader screen when name/logo is clicked
+  // Control display of loader overlay when logo is clicked
   const [showClickLoader, setShowClickLoader] = useState(false);
 
-  // Array of navigation links with section targets
+  // List of navigation links
   const navLinks = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
@@ -28,31 +28,26 @@ export default function Navbar() {
     { name: "Education", href: "#education" },
   ];
 
-  // useEffect runs when component mounts
+  // Handle dark mode preference and section visibility
   useEffect(() => {
-    // Get saved theme preference from localStorage
     const savedTheme = localStorage.getItem("theme");
-
-    // If user previously set dark mode, apply it
     if (savedTheme === "dark") {
       document.documentElement.classList.add("dark");
       setDarkMode(true);
     }
 
-    // Get all sections that have an ID (used for scroll tracking)
+    // Find all sections to observe
     const sections = document.querySelectorAll("section[id]");
-
-    // A map to store how visible each section is on screen
     const visibilityMap = new Map();
 
-    // IntersectionObserver to track which section is most visible
+    // Create observer to track visibility of sections
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           visibilityMap.set(entry.target.id, entry.intersectionRatio);
         });
 
-        // Find the section with the highest visibility ratio
+        // Find section with highest visibility ratio
         let mostVisibleSection = "";
         let maxRatio = 0;
         visibilityMap.forEach((ratio, id) => {
@@ -62,20 +57,20 @@ export default function Navbar() {
           }
         });
 
-        // If "contact" is visible, remove highlight
+        // Remove highlight if "contact" section is active
         if (mostVisibleSection === "contact") {
           setActiveSection("");
         } else {
           setActiveSection(mostVisibleSection);
         }
       },
-      { threshold: [0.25, 0.5, 0.75] } // Triggers callback at different visibility levels
+      { threshold: [0.25, 0.5, 0.75] }
     );
 
     // Start observing each section
     sections.forEach((section) => observer.observe(section));
 
-    // Handle bottom-of-page scroll (clear active section)
+    // Clear highlight when scrolled to bottom
     const handleScroll = () => {
       const scrollPosition = window.innerHeight + window.scrollY;
       const totalHeight = document.body.offsetHeight;
@@ -84,17 +79,17 @@ export default function Navbar() {
       }
     };
 
-    // Add scroll event listener
+    // Attach scroll listener
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup: disconnect observer and remove scroll listener on unmount
+    // Cleanup on unmount
     return () => {
       sections.forEach((section) => observer.unobserve(section));
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // Toggle dark mode and store preference in localStorage
+  // Toggle dark mode and save preference
   const toggleDarkMode = () => {
     const isDark = !darkMode;
     setDarkMode(isDark);
@@ -102,7 +97,7 @@ export default function Navbar() {
     localStorage.setItem("theme", isDark ? "dark" : "light");
   };
 
-  // When name/logo is clicked, show full-screen loader for 2.5 seconds
+  // Show loader screen when logo is clicked
   const handleNameClick = () => {
     setShowClickLoader(true);
     setTimeout(() => {
@@ -112,40 +107,49 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Full-screen loader overlay when logo/name is clicked */}
+      {/* Loader Overlay */}
       {showClickLoader && (
         <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-white dark:bg-gray-900 transition-opacity duration-500 animate-fade">
-          {/* Logo animation */}
+          {/* Animated Logo */}
           <img
             src="/Jp.png"
             alt="Logo"
             className="w-16 h-16 mb-4 animate-spin-slow"
           />
-          {/* Name under logo */}
-          <h1 className="text-3xl font-bold	text-indigo-400 dark:text-indigo-400 animate-pulse">
+
+          {/* Name and Subtitle */}
+          <h1 className="text-3xl font-bold text-indigo-400 dark:text-indigo-400 animate-pulse mb-1">
             John Paul J. Litrero
           </h1>
-          {/* Spinning circle loader */}
-          <div className="w-6 h-6 border-4 border-indigo-400 border-t-transparent rounded-full animate-spin mt-4"></div>
+          <h2 className="text-sm text-gray-700 dark:text-gray-300">
+            IT Support Specialist & Web Developer
+          </h2>
+
+          {/* Dots Loader */}
+          <div className="flex items-center justify-center space-x-2 mt-4">
+            <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce"></div>
+            <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce [animation-delay:-0.2s]"></div>
+            <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce [animation-delay:-0.4s]"></div>
+          </div>
         </div>
       )}
 
-      {/* Navigation Bar */}
+      {/* Navbar Container */}
       <nav className="fixed top-0 left-0 w-full bg-gray-100 text-black dark:bg-gray-800 dark:text-white shadow z-40 transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          
-          {/* Logo + Name section (clickable) */}
+
+          {/* Clickable Logo + Name */}
           <div
             onClick={handleNameClick}
             className="flex items-center space-x-2 cursor-pointer hover:scale-105 transition-transform duration-300"
           >
-            {/* Logo beside name */}
+             {/* Logo beside name */}
             {/* <img
-              src="/Jp.png"
+              src="/Jp1.png"
               alt="Logo"
               className="w-11 h-11 rounded-full object-cover"
             /> */}
-            {/* Name text */}
+            
             <span className="font-bold text-2xl text-indigo-400">
               John Paul J. Litrero
             </span>
@@ -154,7 +158,6 @@ export default function Navbar() {
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-4 ml-8">
             <ul className="flex space-x-6">
-              {/* Map each nav link */}
               {navLinks.map(({ name, href }) => {
                 const isActive = activeSection === href.slice(1);
                 return (
@@ -174,7 +177,7 @@ export default function Navbar() {
               })}
             </ul>
 
-            {/* Contact button (desktop) */}
+            {/* Contact Button */}
             <a
               href="#contact"
               className="ml-4 transition transform hover:scale-110 bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded"
@@ -182,7 +185,7 @@ export default function Navbar() {
               Contact
             </a>
 
-            {/* Theme toggle button (sun/moon) */}
+            {/* Theme Toggle */}
             <button
               onClick={toggleDarkMode}
               className="ml-4 p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-600/30 transition"
@@ -192,7 +195,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Hamburger menu button (for mobile) */}
+          {/* Mobile Hamburger Menu */}
           <button
             className="md:hidden"
             onClick={() => setIsOpen(!isOpen)}
@@ -202,10 +205,9 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu (only visible if isOpen is true) */}
+        {/* Mobile Navigation Dropdown */}
         {isOpen && (
           <ul className="md:hidden px-6 pb-6 flex flex-col space-y-4 bg-white text-black dark:bg-gray-800 dark:text-white">
-            {/* Map mobile nav links */}
             {navLinks.map(({ name, href }) => {
               const isActive = activeSection === href.slice(1);
               return (
@@ -217,15 +219,15 @@ export default function Navbar() {
                         ? "text-indigo-500 border-indigo-500 font-bold"
                         : "hover:text-indigo-600 hover:border-indigo-600 border-transparent"
                     }`}
-                    onClick={() => setIsOpen(false)} // Close mobile menu when link clicked
+                    onClick={() => setIsOpen(false)}
                   >
                     {name}
                   </a>
                 </li>
               );
             })}
-            
-            {/* Contact button (mobile) */}
+
+            {/* Contact Button (Mobile) */}
             <li>
               <a
                 href="#contact"
@@ -236,7 +238,7 @@ export default function Navbar() {
               </a>
             </li>
 
-            {/* Dark mode toggle (mobile) */}
+            {/* Theme Toggle (Mobile) */}
             <li className="text-center">
               <button
                 onClick={toggleDarkMode}

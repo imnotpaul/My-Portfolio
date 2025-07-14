@@ -1,76 +1,78 @@
-// Import animation wrapper from framer-motion
+// Import animation wrapper from Framer Motion
 import { motion } from "framer-motion";
 
-// Import FontAwesome icon component
+// Import FontAwesomeIcon to display vector icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// Import specific social media icons
-import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+// Import specific brand icons for social media
+import { faFacebookF, faInstagram, faGithub } from "@fortawesome/free-brands-svg-icons";
 
-// Import the typing animation component
+// Import the typing effect component from react-type-animation
 import { TypeAnimation } from "react-type-animation";
 
-// Define and export the functional component
+// Define and export the functional React component
 export default function LandingSection() {
-  // Animation settings for the container - will animate its children with delay
+  // Define animation settings for the entire container (parent)
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0 }, // Initial state: hidden
     show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.3, delayChildren: 0.3 },
+      opacity: 1, // Fade in
+      transition: {
+        staggerChildren: 0.3, // Delay each child animation
+        delayChildren: 0.3,   // Wait before starting children animations
+      },
     },
   };
 
-  // Animation for each item inside the container
+  // Define animation for each item inside the container
   const itemVariants = {
-    hidden: { y: 30, opacity: 0 },  // Start lower and invisible
-    show: { y: 0, opacity: 1 },     // Animate to normal position and visible
+    hidden: { y: 30, opacity: 0 }, // Start slightly below with 0 opacity
+    show: { y: 0, opacity: 1 },    // Animate to normal position and full opacity
   };
 
   return (
-    // Section representing the landing/home area of the page
+    // Section element that acts as the landing page
     <section
-      id="home"
+      id="home" // Anchor ID used for navigation
       className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 bg-white dark:bg-gray-900 transition-colors duration-300"
     >
-      {/* Profile image with entrance animation */}
+      {/* Profile Image with entrance zoom animation */}
       <motion.div
         className="rounded-full border-4 border-indigo-400 shadow-lg overflow-hidden w-40 h-40 mb-8"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.8 }}
+        initial={{ scale: 0 }}             // Start with scale 0 (invisible)
+        animate={{ scale: 1 }}             // Animate to full size
+        transition={{ duration: 0.8 }}     // Duration of the zoom
       >
         <img
-          src="/Profile 5.png"
-          alt="Profile"
-          className="w-full h-full object-flex"
+          src="/Profile 5.png"             // Profile picture path
+          alt="Profile"                    // Accessibility alt text
+          className="w-full h-full object-flex" // Fill container; adjust image display
         />
       </motion.div>
 
-      {/* Animated container for the rest of the text and buttons */}
+      {/* Animated container for name, subtitle, icons, and buttons */}
       <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
+        variants={containerVariants}        // Use parent animation config
+        initial="hidden"                    // Start hidden
+        animate="show"                      // Animate into view
         className="space-y-6 w-full max-w-xl"
       >
-        {/* Name with type animation */}
+        {/* Name with typing effect animation */}
         <motion.h1
-          variants={itemVariants}
+          variants={itemVariants}           // Child animation config
           className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white"
         >
           Hello,{" "}
           <TypeAnimation
-            sequence={["I'm John Paul.", 1500, "", 500]}
+            sequence={["I'm John Paul.", 1500, "", 500]} // Text to show & loop
             wrapper="span"
-            speed={50}
-            repeat={Infinity}
+            speed={50}               // Typing speed
+            repeat={Infinity}        // Loop forever
             className="text-indigo-400"
           />
         </motion.h1>
 
-        {/* Subtitle description */}
+        {/* Subtitle under the name */}
         <motion.p
           variants={itemVariants}
           className="text-lg text-black dark:text-white"
@@ -78,14 +80,14 @@ export default function LandingSection() {
           IT Support Specialist & Web Developer
         </motion.p>
 
-        {/* Social Media Icons */}
+        {/* Social media icon row */}
         <motion.div
           variants={itemVariants}
           className="flex gap-8 justify-center mt-4"
         >
-          {/* GitHub Link */}
+          {/* GitHub Icon */}
           <a
-            href="https://github.com/imnotpaul/"
+            href="https://github.com/imnotpaul/" // GitHub profile link
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -95,7 +97,7 @@ export default function LandingSection() {
             />
           </a>
 
-          {/* Facebook Link */}
+          {/* Facebook Icon */}
           <a
             href="https://www.facebook.com/johnpaul.jadielitrero/"
             target="_blank"
@@ -107,7 +109,7 @@ export default function LandingSection() {
             />
           </a>
 
-          {/* Instagram Link */}
+          {/* Instagram Icon */}
           <a
             href="https://www.instagram.com/itszmepaull/"
             target="_blank"
@@ -120,25 +122,25 @@ export default function LandingSection() {
           </a>
         </motion.div>
 
-        {/* Buttons: Download CV & Hire Me */}
+        {/* Call-to-action buttons */}
         <motion.div
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center mt-6"
         >
-          {/* Download CV Button */}
+          {/* Download CV button */}
           <motion.a
-            href="/cv.pdf"
-            download
-            whileHover={{ scale: 1.05 }}
+            href="/cv.pdf"               // File to download
+            download                    // Enables browser download
+            whileHover={{ scale: 1.05 }} // Hover effect
             className="px-8 py-3 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 transition-transform font-semibold"
           >
             Download CV
           </motion.a>
 
-          {/* Hire Me Button scrolls to contact section */}
+          {/* Link to projects section */}
           <motion.a
-            href="#projects"
-            whileHover={{ scale: 1.05 }}
+            href="#projects"             // Scroll to #projects section
+            whileHover={{ scale: 1.05 }} // Hover scale
             className="px-8 py-3 rounded-full border-2 border-indigo-400 text-indigo-400 hover:bg-indigo-600 hover:text-white transition-transform font-semibold"
           >
             My Projects

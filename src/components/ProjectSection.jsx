@@ -1,54 +1,52 @@
-// Import Framer Motion for animations
+// Import motion from Framer Motion for scroll animations and transitions
 import { motion } from "framer-motion";
 
-// Import Slick Carousel for sliding projects
+// Import Slider component from react-slick for carousel functionality
 import Slider from "react-slick";
 
-// Import required CSS for the carousel
+// Import required CSS files for react-slick (carousel styling)
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
 // ===========================
-// Custom Arrow Components
+// Custom Arrow Components for the Slider
 // ===========================
 
-// Custom next arrow for the slider
+// Right (next) arrow component for the carousel
 function NextArrow({ onClick }) {
     return (
         <div
-            onClick={onClick} // Trigger slide next on click
+            onClick={onClick} // This calls the slick "next" method
             className="absolute -right-4 md:-right-8 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-indigo-500 hover:text-indigo-400 text-3xl"
         >
-            ❯
+            ❯ {/* Unicode right arrow character */}
         </div>
     );
 }
 
-// Custom previous arrow for the slider
+// Left (previous) arrow component for the carousel
 function PrevArrow({ onClick }) {
     return (
         <div
-            onClick={onClick} // Trigger slide previous on click
+            onClick={onClick} // This calls the slick "previous" method
             className="absolute -left-4 md:-left-8 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-indigo-500 hover:text-indigo-400 text-3xl"
         >
-            ❮
+            ❮ {/* Unicode left arrow character */}
         </div>
     );
 }
 
-
 // ===========================
-// Project Data Array
+// Project Data Array (for carousel items)
 // ===========================
 
 const projects = [
     {
-        title: "School Management System",
-        image: "/LaravelProj1.jpg",
+        title: "School Management System", // Project title
+        image: "/LaravelProj1.jpg", // Image path (stored in public folder)
         description: "Developed a web-based system using Laravel, PHP, and MySQL with full CRUD functionality.",
-        tags: ["PHP", "LARAVEL", "MySQL"],
-        demo: "https://github.com/imnotpaul/litrero.git",
+        tags: ["PHP", "LARAVEL", "MySQL"], // Tech tags
+        demo: "https://github.com/imnotpaul/litrero.git", // Project link
     },
     {
         title: "Portfolio Website",
@@ -87,31 +85,30 @@ const projects = [
     },
 ];
 
-
 // ===========================
 // Slider Configuration
 // ===========================
 
 const settings = {
-    dots: true, // Show navigation dots
-    infinite: true, // Enable infinite looping
-    speed: 600, // Animation speed in ms
-    slidesToShow: 3, // Number of slides visible at once (desktop)
-    slidesToScroll: 3, // Slides to scroll per navigation
-    autoplay: true, // Enable automatic scrolling
-    autoplaySpeed: 3500, // Delay between auto scrolls in ms
-    nextArrow: <NextArrow />, // Custom next arrow
-    prevArrow: <PrevArrow />, // Custom previous arrow
+    dots: true, // Show navigation dots at bottom
+    infinite: true, // Allows infinite loop when scrolling
+    speed: 600, // Animation transition speed in ms
+    slidesToShow: 3, // Number of slides visible at once on large screens
+    slidesToScroll: 3, // Number of slides to scroll per navigation click
+    autoplay: true, // Enables auto-scrolling
+    autoplaySpeed: 3500, // Delay between auto scrolls (ms)
+    nextArrow: <NextArrow />, // Custom next arrow component
+    prevArrow: <PrevArrow />, // Custom previous arrow component
     responsive: [
         {
-            breakpoint: 1024, // For tablets and below
+            breakpoint: 1024, // For screen width below 1024px (tablet)
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
             },
         },
         {
-            breakpoint: 640, // For mobile devices
+            breakpoint: 640, // For screen width below 640px (mobile)
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -120,53 +117,52 @@ const settings = {
     ],
 };
 
-
 // ===========================
 // Framer Motion Animation Variants
 // ===========================
 
-// Section animation on enter
+// Animation for the whole section (fade + slide in)
 const containerVariants = {
-    hidden: { opacity: 0, y: 30 }, // Initial state
+    hidden: { opacity: 0, y: 30 }, // Initial state: hidden and moved down
     show: {
         opacity: 1,
-        y: 0, // Animate to original position
+        y: 0, // Final state: visible and in place
         transition: {
             duration: 0.6,
-            ease: "easeOut", // Smooth animation
+            ease: "easeOut", // Smooth transition
         },
     },
 };
 
-// Animation for each card (with delay)
+// Animation variant for each card with stagger delay
 const cardVariants = {
-    hidden: { opacity: 0, y: 40 }, // Start hidden and slightly lower
+    hidden: { opacity: 0, y: 40 }, // Start hidden and pushed down
     show: (i) => ({
         opacity: 1,
-        y: 0, // Slide into view
+        y: 0,
         transition: {
-            delay: i * 0.2, // Staggered delay for each card
+            delay: i * 0.2, // Delay each card
             duration: 0.6,
         },
     }),
 };
 
-
 // ===========================
-// ProjectSection Component
+// Main ProjectSection Component
 // ===========================
 
 export default function ProjectSection() {
     return (
+        // Section wrapper with motion animation
         <motion.section
-            id="projects"
-            className="max-w-6xl mx-auto py-20 px-6"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }} // Only animate once per scroll into view
-            variants={containerVariants}
+            id="projects" // Section anchor
+            className="max-w-6xl mx-auto py-20 px-6" // Width and padding
+            initial="hidden" // Initial animation state
+            whileInView="show" // Trigger animation when in view
+            viewport={{ once: true }} // Animate only once when visible
+            variants={containerVariants} // Use defined animation
         >
-            {/* Section Heading with entrance animation */}
+            {/* Section heading with fade + slide-in animation */}
             <motion.h2
                 className="text-3xl font-bold text-indigo-400 mb-16 text-center"
                 initial={{ opacity: 0, y: 50 }}
@@ -177,32 +173,32 @@ export default function ProjectSection() {
                 Projects
             </motion.h2>
 
-            {/* Project Carousel using react-slick */}
+            {/* Render carousel using react-slick */}
             <Slider {...settings}>
                 {projects.map(({ title, image, description, tags, demo }, index) => (
                     <motion.div
                         key={title}
-                        className="px-3"
-                        custom={index} // Used by Framer Motion for stagger
+                        className="px-3" // Spacing between cards
+                        custom={index} // Used for staggered animation
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: false }} // Animate each time it comes into view
+                        viewport={{ once: false }} // Animate every time it scrolls into view
                         variants={cardVariants}
                     >
-                        {/* Card Container */}
+                        {/* Card container */}
                         <div className="relative group rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 transition-transform duration-300 hover:-translate-y-1">
                             
                             {/* Project Image */}
                             <img
-                                src={image}
+                                src={image} // Project screenshot
                                 alt={title || "Project Screenshot"}
                                 className="w-full h-64 object-cover group-hover:scale-105 transition duration-500"
                             />
 
-                            {/* Hover Overlay Info */}
+                            {/* Hover overlay with project info */}
                             <div className="absolute inset-0 bg-white/90 dark:bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-6">
                                 
-                                {/* Title + Description */}
+                                {/* Project title and description */}
                                 <div>
                                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                                         {title}
@@ -211,11 +207,11 @@ export default function ProjectSection() {
                                         {description}
                                     </p>
 
-                                    {/* Tags */}
+                                    {/* Tag list (technologies used) */}
                                     <div className="flex flex-wrap gap-2">
                                         {tags.map((tag) => (
                                             <span
-                                                key={tag}
+                                                key={tag} // Unique key
                                                 className="bg-indigo-600 text-white px-3 py-1 rounded-full text-xs font-semibold"
                                             >
                                                 {tag}
@@ -224,9 +220,9 @@ export default function ProjectSection() {
                                     </div>
                                 </div>
 
-                                {/* Project Demo Link */}
+                                {/* Project demo button */}
                                 <a
-                                    href={demo}
+                                    href={demo} // Link to project or repo
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="mt-4 text-center bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-2 px-4 rounded transition"
