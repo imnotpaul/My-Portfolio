@@ -7,6 +7,7 @@ import {
   faInstagram,
   faGithub,
   faTwitter,
+  faLinkedin
 } from "@fortawesome/free-brands-svg-icons";
 
 // Importing solid icons for email and phone
@@ -81,6 +82,12 @@ export default function Footer() {
           <FontAwesomeIcon
             icon={faTwitter}
             className="text-gray-900 dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition hover:scale-110"
+          />
+        </a>
+        <a href="https://www.linkedin.com/in/john-paul-litrero-b0b62a36a/" target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon
+            icon={faLinkedin}
+            className="text-gray-900 dark:text-white hover:text-[#0A66C2] dark:hover:text-[#1E8FFB] transition hover:scale-110"
           />
         </a>
       </div>

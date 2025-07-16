@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Import specific brand icons for social media
-import { faFacebookF, faInstagram, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 // Import the typing effect component from react-type-animation
 import { TypeAnimation } from "react-type-animation";
@@ -109,14 +109,14 @@ export default function LandingSection() {
             />
           </a>
 
-          {/* Instagram Icon */}
+          {/* Linkedin Icon */}
           <a
-            href="https://www.instagram.com/itszmepaull/"
+            href="https://www.linkedin.com/in/john-paul-litrero-b0b62a36a/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FontAwesomeIcon
-              icon={faInstagram}
+              icon={faLinkedin}
               className="text-2xl text-gray-900 dark:text-white hover:text-indigo-400 dark:hover:text-indigo-400 transition"
             />
           </a>
