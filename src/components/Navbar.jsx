@@ -90,8 +90,10 @@ export default function Navbar() {
         <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-white dark:bg-gray-900 transition-opacity duration-500 animate-fade">
           <img src="/Jp.png" alt="Logo" className="w-16 h-16 mb-4 animate-spin-slow" />
           <h1 className="text-3xl font-bold text-indigo-400 dark:text-indigo-400 animate-pulse mb-1">
-            John Paul J. Litrero
-          </h1>
+        <span className="relative inline-block text-4xl font-extrabold text-indigo-400 drop-shadow-[2px_2px_0px_#4f46e5]">
+          J
+        </span>ohn Paul J. Litrero
+      </h1>
           <h2 className="text-sm text-gray-700 dark:text-gray-300">
             IT Support Specialist & Web Developer
           </h2>
@@ -158,7 +160,6 @@ export default function Navbar() {
   </div>
 )}
 
-
       {/* Navbar */}
       <nav className="fixed top-0 left-0 w-full bg-gray-100 text-black dark:bg-gray-800 dark:text-white shadow z-40 transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -166,9 +167,11 @@ export default function Navbar() {
             onClick={handleNameClick}
             className="flex items-center space-x-2 cursor-pointer hover:scale-105 transition-transform duration-300"
           >
-            <span className="font-bold text-2xl text-indigo-400">
-              John Paul J. Litrero
-            </span>
+         <span className="font-bold text-2xl text-indigo-400">
+      <span className="relative inline-block text-4xl font-extrabold text-indigo-400 drop-shadow-[3px_3px_0px_#4f46e5]">
+        J
+        </span>ohn Paul J. Litrero
+      </span>
           </div>
 
           {/* Desktop Links */}
