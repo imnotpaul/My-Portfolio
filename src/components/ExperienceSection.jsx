@@ -4,6 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 // Import React hook for managing state and side effects
 import { useEffect, useState } from "react";
 
+import Tilt from "react-parallax-tilt";
+
+
 // ======================
 // Experience Data Array
 // ======================
@@ -12,8 +15,8 @@ const experiences = [
         title: "Web Development Support",
         company: "Laravel & PHP Project",
         date: "March 2024 - April 2024",
-        description:
-            "Developed a school management system using Laravel & PHP framework with front-end and back-end integration. Implemented student records, user authentication, dynamic routing, and responsive Blade templates for an efficient and user-friendly experience.",
+        description:   
+            "Supported the development of a school management system using Laravel, integrating student records, authentication, dynamic routing, and responsive Blade templates for an efficient, user-friendly experience.",
         images: ["/LaravelProj1.jpg", "/LaravelProj2.jpg", "/LaravelProj3.jpg"], // Image slideshow
     },
     {
@@ -103,24 +106,37 @@ export default function ExperienceSection() {
                             viewport={{ once: false, amount: 0.3 }} // Animate repeatedly at 30% visibility
                             variants={slideInVariants} // Use dynamic slide direction
                         >
-                            {/* ================== */}
-                            {/* Image Section Card */}
-                            {/* ================== */}
-                            <div className="w-full md:w-1/2 h-[300px] relative overflow-hidden rounded-lg shadow-md">
+                            {/* ====================================== */}
+                            {/* Image Section Card React-Parallax-Tilt */}
+                            {/* ====================================== */}
+                        <Tilt
+                            tiltMaxAngleX={15}
+                            tiltMaxAngleY={15}
+                            perspective={1000}
+                            transitionSpeed={1000}
+                            gyroscope={true}
+                            className="w-full md:w-1/2 h-[300px]"
+                            >
+                            <div
+                                className="relative w-full h-full overflow-hidden rounded-lg group
+                                        hover:shadow-2xl hover:border-2 hover:border-[#6366f1]
+                                        transition-all duration-300 ease-in-out"
+                            >
                                 <AnimatePresence mode="wait">
-                                    {/* Animate image transitions using fade effect */}
-                                    <motion.img
-                                        key={activeImage} // Key ensures re-render for animation
-                                        src={activeImage} // Image path
-                                        alt={title} // Descriptive alt text
-                                        className="object-cover w-full h-full absolute top-0 left-0 rounded-lg"
-                                        initial={{ opacity: 0 }} // Start invisible
-                                        animate={{ opacity: 1 }} // Fade in
-                                        exit={{ opacity: 0 }} // Fade out when replaced
-                                        transition={{ duration: 1 }} // 1 second fade
-                                    />
+                                <motion.img
+                                    key={activeImage}
+                                    src={activeImage}
+                                    alt={title}
+                                    className="object-cover w-full h-full absolute top-0 left-0 rounded-lg"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 1 }}
+                                    draggable="false" // Disable dragging the image in browser
+                                />
                                 </AnimatePresence>
                             </div>
+                        </Tilt>
 
                             {/* ================== */}
                             {/* Text Information */}

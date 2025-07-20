@@ -15,6 +15,9 @@ import {
 // Import motion from Framer Motion for animations
 import { motion } from 'framer-motion';
 
+// Import React Parallax Tilt for tilt effect on images
+import Tilt from 'react-parallax-tilt';
+
 // Define and export the functional component
 export default function AboutSection() {
     // State to track whether "more info" is expanded or not
@@ -27,22 +30,39 @@ export default function AboutSection() {
             className="max-w-6xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center md:items-start gap-10"
             // Layout: max width container, padding, responsive flex direction and spacing
         >
-            {/* Left Side: Profile Picture with animation */}
-            <motion.div
-                className="w-full md:w-1/2 flex justify-center" // Full width on mobile, half on medium and up
-                initial={{ opacity: 0, x: -100 }} // Start animation: hidden and shifted left
-                whileInView={{ opacity: 1, x: 0 }} // Animate to visible and original position
-                viewport={{ once: false }} // Animate every time it enters the viewport
-                transition={{ duration: 0.8 }} // Animation duration
+            {/* Image with motion animation and 3D hover tilt effect */}
+        <motion.div
+            className="w-full md:w-1/2 flex justify-center" // Responsive layout: full on mobile, half on medium and up
+            initial={{ opacity: 0, x: -100 }} // Animation starts with 0 opacity and moved left
+            whileInView={{ opacity: 1, x: 0 }} // Animates to visible and back to original position
+            viewport={{ once: false }} // Re-animates every time it comes into view
+            transition={{ duration: 0.8 }} // Duration of animation in seconds
+        >
+            <Tilt
+                tiltMaxAngleX={10} // Max tilt angle on X-axis (left-right)
+                tiltMaxAngleY={10} // Max tilt angle on Y-axis (up-down)
+                glareEnable={true} // Enable light glare effect
+                glareMaxOpacity={0.15} // Max opacity of the glare
+                glareColor="#6366f1" // Glare color (indigo-500)
+                scale={1.05} // Slight zoom effect on hover
+                transitionSpeed={1500} // How fast tilt/glare responds to movement (ms)
+                className="rounded-lg shadow-xl" // Base shadow and rounded corners
+                gyroscope={true} // Enable gyroscope effect for tilt on mobile devices
             >
                 <img
-                    src="/Profile 5.png" // Path to profile picture
-                    alt="Profile" // Accessibility: alternative text
-                    className="rounded-lg object-cover w-full max-w-md h-auto shadow-lg"
-                    // Style: rounded corners, cover image, responsive size, shadow
-                    style={{ maxHeight: '400px', transform: 'translateY(30px)'}} // Limit height
+                    src="/Profile 5.png" // Path to your profile image
+                    alt="Profile" // Alt text for accessibility
+                    draggable="false" // Disable dragging the image in browser
+                    className="rounded-lg object-cover w-full max-w-md h-auto shadow-lg 
+                            transition duration-300 ease-in-out 
+                            hover:shadow-[0_0_25px_#6366f1]" // Indigo glow on hover
+                    style={{
+                        maxHeight: '400px', // Limit height
+                        transform: 'translateY(30px)', // Push image slightly downward for layout spacing
+                    }}
                 />
-            </motion.div>
+            </Tilt>
+        </motion.div>
 
             {/* Right Side: Bio and Contact Info with animation */}
             <motion.div
