@@ -47,6 +47,7 @@ export default function LandingSection() {
           src="/Profile 5.png"             // Profile picture path
           alt="Profile"                    // Accessibility alt text
           className="w-full h-full object-flex" // Fill container; adjust image display
+          draggable="false" // Disable dragging the image in browser
         />
       </motion.div>
 

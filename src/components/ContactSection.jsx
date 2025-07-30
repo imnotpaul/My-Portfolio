@@ -131,7 +131,7 @@ export default function ContactSection() {
                     {/* Submit button */}
                     <button
                         type="submit"
-                        className="py-3 px-8 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white rounded font-semibold transition-transform transform hover:scale-105 focus:scale-105 focus:outline-none mx-auto block"
+                        className="py-3 px-8 bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white rounded font-semibold transition-transform transform hover:scale-105 focus:scale-105 focus:outline-none mx-auto block"
                     >
                         Send Message
                     </button>

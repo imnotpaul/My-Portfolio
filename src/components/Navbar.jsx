@@ -108,7 +108,7 @@ export default function Navbar() {
         <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-white dark:bg-gray-900 transition-opacity duration-500 animate-fade">
           <img src="/Jp.png" alt="Logo" className="w-16 h-16 mb-4 animate-spin-slow" />
           <h1 className="text-3xl font-bold text-indigo-400 dark:text-indigo-400 animate-pulse mb-1">
-            <span className="relative inline-block text-4xl font-extrabold text-indigo-400 drop-shadow-[2px_2px_0px_#4f46e5]">
+            <span className="relative inline-block text-4xl font-extrabold">
               J
             </span>ohn Paul J. Litrero
           </h1>
@@ -164,7 +164,7 @@ export default function Navbar() {
           {/* Brand / Name clickable with loader */}
           <div onClick={handleNameClick} className="flex items-center space-x-2 cursor-pointer hover:scale-105 transition-transform duration-300">
             <span className="font-bold text-2xl text-indigo-400">
-              <span className="relative inline-block text-4xl font-extrabold text-indigo-400 drop-shadow-[3px_3px_0px_#4f46e5]">J</span>ohn Paul J. Litrero
+              <span className="relative inline-block text-4xl font-extrabold">J</span>ohn Paul J. Litrero
             </span>
           </div>
 

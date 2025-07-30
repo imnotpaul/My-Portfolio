@@ -18,7 +18,7 @@ export default function LoaderOverlay({ show }) {
       {/* Main name text with large font, colored text, and a glowing drop shadow effect */}
       <h1 className="text-3xl font-bold text-indigo-400 dark:text-indigo-400 animate-pulse mb-1">
         {/* The first letter 'J' is styled separately with even bolder effects */}
-        <span className="relative inline-block text-4xl font-extrabold text-indigo-400 drop-shadow-[2px_2px_0px_#4f46e5]">
+        <span className="relative inline-block text-4xl font-extrabold">
           J
         </span>
         ohn Paul J. Litrero
