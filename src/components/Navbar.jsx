@@ -1,20 +1,18 @@
-import { useState, useEffect } from "react"; // Import React hooks for state and lifecycle
-import { Menu, X, Sun, Moon } from "lucide-react"; // Import icons from lucide-react
+import { useState, useEffect, useRef } from "react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { ToastContainer, toast, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// Define the Navbar component
 export default function Navbar() {
-  // State for mobile menu toggle
   const [isOpen, setIsOpen] = useState(false);
-  // State to track the currently visible section
   const [activeSection, setActiveSection] = useState("home");
-  // State to track dark mode
   const [darkMode, setDarkMode] = useState(false);
-  // State to show loading animation when name is clicked
   const [showClickLoader, setShowClickLoader] = useState(false);
-  // State to toggle the contact modal
   const [showContactModal, setShowContactModal] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const contactFormRef = useRef();
 
-  // Define navigation links
   const navLinks = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
@@ -24,50 +22,39 @@ export default function Navbar() {
     { name: "Education", href: "#education" },
   ];
 
-  // Run on component mount
   useEffect(() => {
-    // Check local storage for saved theme
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
       document.documentElement.classList.add("dark");
       setDarkMode(true);
     }
 
-    // Select all sections with id attributes
     const sections = document.querySelectorAll("section[id]");
     const visibilityMap = new Map();
 
-    // Observe section visibility using IntersectionObserver
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          visibilityMap.set(entry.target.id, entry.intersectionRatio);
-        });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        visibilityMap.set(entry.target.id, entry.intersectionRatio);
+      });
 
-        // Determine which section is most visible
-        let mostVisibleSection = "";
-        let maxRatio = 0;
-        visibilityMap.forEach((ratio, id) => {
-          if (ratio > maxRatio) {
-            maxRatio = ratio;
-            mostVisibleSection = id;
-          }
-        });
-
-        // If "contact" is visible, don't highlight any nav link
-        if (mostVisibleSection === "contact") {
-          setActiveSection("");
-        } else {
-          setActiveSection(mostVisibleSection);
+      let mostVisibleSection = "";
+      let maxRatio = 0;
+      visibilityMap.forEach((ratio, id) => {
+        if (ratio > maxRatio) {
+          maxRatio = ratio;
+          mostVisibleSection = id;
         }
-      },
-      { threshold: [0.25, 0.5, 0.75] }
-    );
+      });
 
-    // Start observing each section
+      if (mostVisibleSection === "contact") {
+        setActiveSection("");
+      } else {
+        setActiveSection(mostVisibleSection);
+      }
+    }, { threshold: [0.25, 0.5, 0.75] });
+
     sections.forEach((section) => observer.observe(section));
 
-    // Handle scroll near bottom to reset active section
     const handleScroll = () => {
       const scrollPosition = window.innerHeight + window.scrollY;
       const totalHeight = document.body.offsetHeight;
@@ -77,15 +64,12 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    // Cleanup on unmount
     return () => {
       sections.forEach((section) => observer.unobserve(section));
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // Toggle dark mode and save preference to localStorage
   const toggleDarkMode = () => {
     const isDark = !darkMode;
     setDarkMode(isDark);
@@ -93,24 +77,76 @@ export default function Navbar() {
     localStorage.setItem("theme", isDark ? "dark" : "light");
   };
 
-  // Show loading animation when name is clicked
   const handleNameClick = () => {
     setShowClickLoader(true);
-    setTimeout(() => {
-      setShowClickLoader(false);
-    }, 2500);
+    setTimeout(() => setShowClickLoader(false), 2500);
+  };
+
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    setIsSending(true);
+
+    const formData = new FormData(contactFormRef.current);
+    const senderName = formData.get("name") || "Someone";
+
+    emailjs
+      .sendForm(
+        "service_yvgyij4",
+        "template_n1xv0uf",
+        contactFormRef.current,
+        "fGT0kxPxag7qHc5dF"
+      )
+      .then(() => {
+        toast.success(`Message sent successfully. Thank you, ${senderName}!`, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+          style: {
+            background: "#6366f1", // Indigo-500
+            color: "#fff",
+            fontWeight: "bold",
+            borderRadius: "0.5rem",
+            boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1)",
+          },
+          icon: "📨",
+        });
+        contactFormRef.current.reset();
+        setShowContactModal(false);
+      })
+      .catch(() => {
+        toast.error("Failed to send message. Please try again.", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+          style: {
+            background: "#ef4444", // Red-500
+            color: "#fff",
+            fontWeight: "bold",
+            borderRadius: "0.5rem",
+            boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1)",
+          },
+          icon: "⚠️",
+        });
+      })
+      .finally(() => setIsSending(false));
   };
 
   return (
     <>
-      {/* Loader shown when name is clicked */}
+      {/* Loader animation on name click */}
       {showClickLoader && (
         <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-white dark:bg-gray-900 transition-opacity duration-500 animate-fade">
           <img src="/Jp.png" alt="Logo" className="w-16 h-16 mb-4 animate-spin-slow" />
           <h1 className="text-3xl font-bold text-indigo-400 dark:text-indigo-400 animate-pulse mb-1">
-            <span className="relative inline-block text-4xl font-extrabold">
-              J
-            </span>ohn Paul J. Litrero
+            <span className="relative inline-block text-4xl font-extrabold">J</span>ohn Paul J. Litrero
           </h1>
           <h2 className="text-sm text-gray-700 dark:text-gray-300">
             IT Support Specialist & Web Developer
@@ -123,40 +159,44 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* Contact Modal (shown when "Contact" is clicked) */}
+      {/* Contact Modal */}
       {showContactModal && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-30 dark:bg-opacity-70 flex items-center justify-center px-4">
           <div className="bg-white dark:bg-[#1e293b] text-gray-800 dark:text-white w-full max-w-md p-6 rounded-xl shadow-xl relative">
-            {/* Close button for modal */}
             <button
               onClick={() => setShowContactModal(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition"
             >
               <X size={24} />
             </button>
-
-            {/* Form Heading */}
             <h2 className="text-2xl font-semibold mb-6 text-center text-indigo-600 dark:text-white">Hire Me</h2>
-
-            {/* Form Fields */}
-            <form className="space-y-5">
+            <form ref={contactFormRef} onSubmit={handleContactSubmit} className="space-y-5">
               <div>
                 <label className="block mb-1 text-sm font-medium text-indigo-600 dark:text-indigo-400">Name</label>
-                <input type="text" placeholder="Your name" className="w-full px-4 py-2 border border-indigo-300 dark:border-indigo-500 rounded-md bg-white dark:bg-[#334155] text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                <input name="name" type="text" placeholder="Your name" required className="w-full px-4 py-2 border border-indigo-300 dark:border-indigo-500 rounded-md bg-white dark:bg-[#334155] text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" />
               </div>
               <div>
                 <label className="block mb-1 text-sm font-medium text-indigo-600 dark:text-indigo-400">Email</label>
-                <input type="email" placeholder="Your email" className="w-full px-4 py-2 border border-indigo-300 dark:border-indigo-500 rounded-md bg-white dark:bg-[#334155] text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                <input name="email" type="email" placeholder="Your email" required className="w-full px-4 py-2 border border-indigo-300 dark:border-indigo-500 rounded-md bg-white dark:bg-[#334155] text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" />
               </div>
               <div>
                 <label className="block mb-1 text-sm font-medium text-indigo-600 dark:text-indigo-400">Message</label>
-                <textarea placeholder="Your message..." rows="4" className="w-full px-4 py-2 border border-indigo-300 dark:border-indigo-500 rounded-md bg-white dark:bg-[#334155] text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                <textarea name="message" placeholder="Your message..." rows="4" required className="w-full px-4 py-2 border border-indigo-300 dark:border-indigo-500 rounded-md bg-white dark:bg-[#334155] text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" />
               </div>
-              <button type="submit" className="w-auto px-6 mx-auto bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 rounded-md transition block">Send Message</button>
+              <button
+                type="submit"
+                disabled={isSending}
+                className="py-3 px-8 bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white rounded font-semibold transition-transform transform hover:scale-105 focus:scale-105 focus:outline-none mx-auto block"
+              >
+                {isSending ? "Sending..." : "Send Message"}
+              </button>
             </form>
           </div>
         </div>
       )}
+
+      {/* Toastify notification container */}
+      <ToastContainer transition={Slide} />
 
       {/* Top Navigation Bar */}
       <nav className="fixed top-0 left-0 w-full bg-gray-100 text-black dark:bg-gray-800 dark:text-white shadow z-40 transition-colors duration-300">

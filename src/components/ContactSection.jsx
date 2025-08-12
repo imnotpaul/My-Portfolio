@@ -8,6 +8,10 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPhone, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
+// 🔔 Toastify for notifications
+import 'react-toastify/dist/ReactToastify.css';// Import Toastify styles
+import { ToastContainer, toast, Slide } from 'react-toastify'; // Import Toastify components
+
 // Import emailjs for sending form data via email
 import emailjs from '@emailjs/browser';
 
@@ -15,30 +19,69 @@ import emailjs from '@emailjs/browser';
 export default function ContactSection() {
     // React state for form fields: name, email, and message
     const [form, setForm] = useState({ name: "", email: "", message: "" });
+    const [isSending, setIsSending] = useState(false);
 
     // Handle input field changes and update the corresponding value in the state
     const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
     // Handle form submission
     const handleSubmit = (e) => {
-        e.preventDefault(); // Prevent the default form submit behavior
+    e.preventDefault();
+    setIsSending(true);
 
-        // Use EmailJS to send the form data
-        emailjs.sendForm(
-            'service_yvgyij4', // Your EmailJS service ID
-            'template_n1xv0uf', // Your template ID
-            e.target, // The form element being submitted
-            'fGT0kxPxag7qHc5dF' // Your public key or user ID
-        )
-        .then(() => {
-            alert(`Message sent successfully! Thanks, ${form.name}!`); // Success message
-            setForm({ name: "", email: "", message: "" }); // Reset the form
-        })
-        .catch((error) => {
-            console.error(error); // Log error
-            alert('Failed to send message. Please try again later.'); // Error message
-        });
-    };
+    emailjs.sendForm(
+        'service_yvgyij4',
+        'template_n1xv0uf',
+        e.target,
+        'fGT0kxPxag7qHc5dF'
+    )
+    .then(() => {
+        toast.success(
+            `Message sent successfully. Thank you, ${form.name}!`,
+            {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+                style: {
+                    background: "#6366f1", // Indigo-500
+                    color: "#fff",
+                    fontWeight: "bold",
+                    borderRadius: "0.5rem",
+                    boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1)"
+                },
+                icon: "📨"
+            }
+        );
+        setForm({ name: "", email: "", message: "" });
+    })
+    .catch(() => {
+        toast.error(
+            "Failed to send message. Please try again.",
+            {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+                style: {
+                    background: "#ef4444", // Red-500
+                    color: "#fff",
+                    fontWeight: "bold",
+                    borderRadius: "0.5rem",
+                    boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1)"
+                },
+                icon: "⚠️"
+            }
+        );
+    })
+    .finally(() => setIsSending(false));
+};
 
     return (
         // Outer section for the contact page
@@ -131,16 +174,21 @@ export default function ContactSection() {
                     {/* Submit button */}
                     <button
                         type="submit"
+                        disabled={isSending}
                         className="py-3 px-8 bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white rounded font-semibold transition-transform transform hover:scale-105 focus:scale-105 focus:outline-none mx-auto block"
                     >
-                        Send Message
+                        {isSending ? 'Sending...' : 'Send Message'}
                     </button>
+            
+            <ToastContainer />
+            {/* Toast container for notifications */}
+
                 </motion.form>
             </div>
 
             {/* Google Map Embed with animation */}
             <motion.div
-                className="mt-12 max-w-5xl mx-auto border-4 border-indigo-500 rounded-lg overflow-hidden shadow-lg"
+                className="mt-12 max-w-4xl mx-auto border-4 border-indigo-500 rounded-lg overflow-hidden shadow-lg"
                 initial={{ opacity: 0, y: 50 }} // Start hidden and below
                 whileInView={{ opacity: 1, y: 0 }} // Animate into view
                 viewport={{ once: false }}

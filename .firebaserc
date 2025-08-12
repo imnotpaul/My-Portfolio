@@ -1,7 +1,5 @@
 {
   "projects": {
     "default": "my-portfolio-fa9db"
-  },
-  "targets": {},
-  "etags": {}
+  }
 }

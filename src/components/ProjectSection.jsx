@@ -180,7 +180,7 @@ export default function ProjectSection() {
                         key={title}
                         className="px-3" // Spacing between cards
                         custom={index} // Used for staggered animation
-                        initial="hidden"
+                          initial="hidden"
                         whileInView="show"
                         viewport={{ once: false }} // Animate every time it scrolls into view
                         variants={cardVariants}
