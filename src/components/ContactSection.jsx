@@ -33,7 +33,7 @@ export default function ContactSection() {
         'service_yvgyij4',
         'template_n1xv0uf',
         e.target,
-        'fGT0kxPxag7qHc5dF'
+        '7HM8uLATty13WTOrj'
     )
     .then(() => {
         toast.success(

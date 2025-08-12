@@ -94,7 +94,7 @@ export default function Navbar() {
         "service_yvgyij4",
         "template_n1xv0uf",
         contactFormRef.current,
-        "fGT0kxPxag7qHc5dF"
+        "7HM8uLATty13WTOrj" 
       )
       .then(() => {
         toast.success(`Message sent successfully. Thank you, ${senderName}!`, {
