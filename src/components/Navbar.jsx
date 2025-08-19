@@ -26,7 +26,6 @@ export default function Navbar() {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
       document.documentElement.classList.add("dark");
-      setDarkMode(true);
     }
 
     const sections = document.querySelectorAll("section[id]");
@@ -106,18 +105,24 @@ export default function Navbar() {
           draggable: true,
           theme: "colored",
           style: {
-            background: "#6366f1", // Indigo-500
-            color: "#fff",
-            fontWeight: "bold",
-            borderRadius: "0.5rem",
-            boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1)",
+          background: "#6366f1", // Indigo-500
+          color: "#fff",
+          fontWeight: "bold",
+          borderRadius: "0.5rem",
+          boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1)",
           },
           icon: "📨",
-        });
-        contactFormRef.current.reset();
-        setShowContactModal(false);
-      })
-      .catch(() => {
+        onClose: () => {
+          const toastDOM = document.querySelector(".Toastify__toast-container");
+          if (toastDOM) {
+            toastDOM.style.display = "none"; // fully hide the container after toast ends
+          }
+        }
+      });
+      contactFormRef.current.reset();
+      setShowContactModal(false);
+    })
+    .catch(() => {
         toast.error("Failed to send message. Please try again.", {
           position: "top-center",
           autoClose: 2000,
@@ -196,7 +201,11 @@ export default function Navbar() {
       )}
 
       {/* Toastify notification container */}
-      <ToastContainer transition={Slide} />
+       <ToastContainer
+        transition={Slide}
+        autoClose={2000}      // automatically closes after 2 seconds
+        hideProgressBar={false} // show the progress bar
+      />
 
       {/* Top Navigation Bar */}
       <nav className="fixed top-0 left-0 w-full bg-gray-100 text-black dark:bg-gray-800 dark:text-white shadow z-40 transition-colors duration-300">

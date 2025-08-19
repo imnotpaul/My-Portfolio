@@ -120,7 +120,7 @@
     </style>
   </head>
 
-  <body>
+  <>
     <!-- Welcome message box -->
     <div id="message">
       <h2>Welcome</h2>
@@ -164,6 +164,18 @@
           loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
         }
       });
+    </script>
+    
+    <!-- EmailJS library -->
+    <script defer src="https://cdn.emailjs.com/dist/email.min.js" nonce="EMAILJS_NONCE"></script>
+
+    <!-- EmailJS initialization -->
+    <script nonce="EMAILJS_NONCE">
+      (function() {
+        // Replace with your EmailJS public key
+        emailjs.init("7HM8uLATty13WTOrj")
+        console.log("EmailJS initialized");
+      })();
     </script>
   </body>
 </html>
