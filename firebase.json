@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "my-portfolio-fa9db.web.app",
     "public": "dist",
     "ignore": [
       "firebase.json",
