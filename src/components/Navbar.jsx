@@ -3,6 +3,7 @@ import { Menu, X, Sun, Moon } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -151,7 +152,7 @@ export default function Navbar() {
         <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-white dark:bg-gray-900 transition-opacity duration-500 animate-fade">
           <img src="/Jp.png" alt="Logo" className="w-16 h-16 mb-4 animate-spin-slow" />
           <h1 className="text-3xl font-bold text-indigo-400 dark:text-indigo-400 animate-pulse mb-1">
-            <span className="relative inline-block text-4xl font-extrabold">J</span>ohn Paul J. Litrero
+            <span className="relative inline-block text-4xl font-extrabold">J</span>ohn Paul Litrero
           </h1>
           <h2 className="text-sm text-gray-700 dark:text-gray-300">
             IT Support Specialist & Web Developer
@@ -208,33 +209,71 @@ export default function Navbar() {
       />
 
       {/* Top Navigation Bar */}
-      <nav className="fixed top-0 left-0 w-full bg-gray-100 text-black dark:bg-gray-800 dark:text-white shadow z-40 transition-colors duration-300">
+     <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="fixed top-0 left-0 w-full bg-gray-100 text-black dark:bg-gray-800 dark:text-white shadow z-40 transition-colors duration-300"
+      >
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           {/* Brand / Name clickable with loader */}
           <div onClick={handleNameClick} className="flex items-center space-x-2 cursor-pointer hover:scale-105 transition-transform duration-300">
             <span className="font-bold text-2xl text-indigo-400">
-              <span className="relative inline-block text-4xl font-extrabold">J</span>ohn Paul J. Litrero
+              <span className="relative inline-block text-4xl font-extrabold">J</span>ohn Paul Litrero
             </span>
           </div>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Links */}      
           <div className="hidden md:flex items-center space-x-4 ml-12">
-            <ul className="flex space-x-5">
+            {/* Animated UL with staggerChildren for sequential animation */}
+            <motion.ul
+              className="flex space-x-5"
+              initial="hidden"               // initial state of the UL
+              animate="visible"             // animate to this state on load
+              variants={{
+                hidden: {},                 // no changes for UL itself
+                visible: {
+                  transition: {             // stagger each child <li>
+                    staggerChildren: 0.2,   // delay between each link animation
+                  },
+                },
+              }}
+            >
               {navLinks.map(({ name, href }) => {
                 const isActive = activeSection === href.slice(1);
                 return (
-                  <li key={name}>
-                    <a href={href} className={`transition-all duration-300 pb-1 border-b-2 ${isActive ? "text-indigo-400 border-indigo-400 font-semibold" : "border-transparent hover:text-indigo-600 hover:border-indigo-600"}`}>{name}</a>
-                  </li>
+                  // Animated LI for each nav link
+                  <motion.li
+                    key={name}
+                    variants={{
+                      hidden: { y: -20, opacity: 0 }, // start above and invisible
+                      visible: { 
+                        y: 0, 
+                        opacity: 1, 
+                        transition: { type: "spring", stiffness: 300, damping: 30 } // smooth spring animation
+                      },
+                    }}
+                  >
+                    <a
+                      href={href}
+                      className={`transition-all duration-300 pb-1 border-b-2 ${
+                        isActive
+                          ? "text-indigo-400 border-indigo-400 font-semibold"
+                          : "border-transparent hover:text-indigo-600 hover:border-indigo-600"
+                      }`}
+                    >
+                      {name}
+                    </a>
+                  </motion.li>
                 );
               })}
-            </ul>
-
+            </motion.ul>
+  
             {/* Contact Button */}
             <button onClick={() => setShowContactModal(true)} className="ml-4 transition transform hover:scale-110 bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded">Contact</button>
 
             {/* Dark Mode Toggle */}
-            <button onClick={toggleDarkMode} className="ml-4 p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-600/30 transition" aria-label="Toggle Theme">
+            <button onClick={toggleDarkMode} className="ml-4 p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-600/30 transition transform hover:scale-110" aria-label="Toggle Theme">
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
           </div>
@@ -270,7 +309,7 @@ export default function Navbar() {
             </li>
           </ul>
         )}
-      </nav>
+      </motion.nav>
     </>
   );
 }

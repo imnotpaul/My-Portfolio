@@ -94,7 +94,7 @@ export default function LandingSection() {
           >
             <FontAwesomeIcon
               icon={faGithub}
-              className="text-2xl text-gray-900 dark:text-white hover:text-indigo-400 dark:hover:text-indigo-400 transition"
+              className="text-2xl text-gray-900 dark:text-white hover:text-indigo-400 dark:hover:text-indigo-400 transition transform hover:scale-110"
             />
           </a>
 
@@ -106,7 +106,7 @@ export default function LandingSection() {
           >
             <FontAwesomeIcon
               icon={faFacebookF}
-              className="text-2xl text-gray-900 dark:text-white hover:text-indigo-400 dark:hover:text-indigo-400 transition"
+              className="text-2xl text-gray-900 dark:text-white hover:text-indigo-400 dark:hover:text-indigo-400 transition transform hover:scale-110"
             />
           </a>
 
@@ -118,7 +118,7 @@ export default function LandingSection() {
           >
             <FontAwesomeIcon
               icon={faLinkedin}
-              className="text-2xl text-gray-900 dark:text-white hover:text-indigo-400 dark:hover:text-indigo-400 transition"
+              className="text-2xl text-gray-900 dark:text-white hover:text-indigo-400 dark:hover:text-indigo-400 transition transform hover:scale-110"
             />
           </a>
         </motion.div>

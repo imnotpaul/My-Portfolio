@@ -98,7 +98,7 @@ export default function AboutSection() {
                 {/* Toggle Button to show/hide more info */}
                 <button
                     onClick={() => setIsExpanded(!isExpanded)} // Toggle state
-                    className="text-indigo-600 dark:text-indigo-400 font-semibold underline hover:text-indigo-400 dark:hover:text-indigo-300 transition-colors"
+                    className="text-indigo-600 dark:text-indigo-400 font-semibold underline hover:text-indigo-400 dark:hover:text-indigo-300 transition transform hover:scale-110"
                     // Style: Indigo text, underline, hover color changes for dark/light mode
                 >
                     {isExpanded ? 'View Less' : 'View More'} {/* Toggle button label */}

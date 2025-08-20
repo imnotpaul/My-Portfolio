@@ -41,7 +41,7 @@ export default function EducationSection() {
 
   return (
     // Section container with responsive padding and max width
-    <section id="education" className="max-w-6xl mx-auto py-16 px-6">
+    <section id="education" className="max-w-4xl mx-auto py-16 px-6">
 
       {/* Animated section heading */}
       <motion.h2
@@ -76,7 +76,7 @@ export default function EducationSection() {
             {/* Button to toggle certificate view */}
             <button
               onClick={() => toggleCertificate(index)} // Show or hide certificate
-              className="mt-4 text-sm text-white bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded transition duration-300"
+              className="mt-4 text-sm text-white bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded transition transform hover:scale-110 duration-300"
             >
               {/* Button text changes based on visibility */}
               {visibleCertIndex === index ? "Hide Certificate" : "View Certificate"}

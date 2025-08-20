@@ -225,7 +225,7 @@ export default function ProjectSection() {
                                     href={demo} // Link to project or repo
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="mt-4 text-center bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-2 px-4 rounded transition"
+                                    className="mt-4 text-center bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-2 px-4 rounded transition transform hover:scale-110"
                                 >
                                     View Project
                                 </a>
